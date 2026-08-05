@@ -11,6 +11,7 @@
 .btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(38, 37, 34, 0.2);
+  cursor: pointer;
 }
 
 .dark {

@@ -8,12 +8,12 @@ type Props = {
 
 export const Button = ({name, color = `dark`} : Props) => {
 
-	const btnClass = clsx ({
-		[styles.btn]: true,
-		[styles[color]]: true
-	})
+	const btnClass = clsx (
+    [styles.btn], 
+    [styles[color]]
+  )
 
 	return (
-		<div className={btnClass}>{name}</div>
+		<button className={btnClass}>{name}</button>
 	)
 }

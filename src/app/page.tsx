@@ -1,5 +1,9 @@
+import { Explore } from "@/components/widgets/explore/Explore";
+
 export default function Home() {
   return (
-    <div>Main</div>
+    <>
+      <Explore/>
+    </>
   );
 }
