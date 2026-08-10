@@ -1,0 +1,20 @@
+import { ColorButton } from '@/components/ui/colorButton/ColorButton';
+import styles from './Banner.module.css';
+import Link from "next/link";
+
+export default function Banner() {
+  return (
+    <section className={styles.bannerSection}>
+      <div className={styles.bannerContent}>
+        <h1 className={styles.title}>Unleash Culinary Excellence</h1>
+        <p className={styles.text}>
+          Explore a world of flavors, discover handcrafted recipes, and let the
+          aroma of our passion for cooking fill your kitchen
+        </p>
+        <Link href="/recipes">
+          <ColorButton name="explore recipes" bcgColor="color2" />
+        </Link>
+      </div>
+    </section>
+  );
+}
