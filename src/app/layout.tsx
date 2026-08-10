@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "@/assets/styles/index.css";
 import { Header } from "@/components/widgets/header/Header";
 import { Footer } from "@/components/widgets/footer/Footer";
+import { roboto, inter, montserrat } from '@/assets/fonts/fonts';
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -11,13 +12,11 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en">
-      <body>
+      <body className={`${roboto.variable} ${inter.variable} ${montserrat.variable}`}>
         <div className="wrapper">
-          <main className="content">
-            <Header/>
-            {children}
-            <Footer/>
-          </main>
+          <Header />
+          <main className="content">{children}</main>
+          <Footer />
         </div>
       </body>
     </html>

@@ -1,5 +1,6 @@
-import clsx from 'clsx'
-import styles from './ColorButton.module.css'
+import clsx from 'clsx';
+import styles from './ColorButton.module.css';
+import { roboto } from '@/assets/fonts/fonts';
 
 type Props = {
 	name: string,
@@ -8,10 +9,11 @@ type Props = {
 
 export const ColorButton = ({name, bcgColor} : Props) => {
 
-	const btnClass = clsx ({
-		[styles.btn]: true,
-		[styles[bcgColor]]: true,
-	})
+	const btnClass = clsx (
+		styles.btn,
+		styles[bcgColor],
+    roboto.className
+	)
 
 	return (
 		<button className={btnClass}>{name}</button>
