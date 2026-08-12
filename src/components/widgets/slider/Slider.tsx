@@ -32,7 +32,7 @@ export const Slider = <T extends { id: string | number }>({ slidesInfo, sliderTi
 	if (slidesInfo === null) {
 		return;
 	}
-  console.log(Grid)
+
 	return (
 		<section className={sliderSection}>
 			<div className={styles.header}>

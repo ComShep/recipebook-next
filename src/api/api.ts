@@ -1,3 +1,5 @@
+import { SubSectionType } from "@/types/types";
+
 const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 
 export const getFetchData = async <T>(
@@ -26,16 +28,37 @@ export const getFetchData = async <T>(
   return data as T;
 };
 
-// export const getDetail = async <T>(id: string, section: string, subSection?: SubSectionType | null): Promise<T> => {
-// 	let url: string;
+export const getDetail = async <T>(
+  slug: string,
+  section: string,
+  subSection?: SubSectionType | null,
+  options?: {
+    cache?: RequestCache;          
+    revalidate?: number;          
+    tags?: string[];              
+    headers?: HeadersInit;        
+  }
+): Promise<T> => {
+  let url: string;
+  if (subSection) {
+    url = `${baseUrl}${section}/${subSection}/${slug}.json`;
+  } else {
+    url = `${baseUrl}${section}/${slug}.json`;
+  }
 
-// 	if (subSection) {
-// 		url = `${baseUrl}${section}/${subSection}/${id}.json`;
-// 	} else {
-// 		url = `${baseUrl}${section}/${id}.json`;
-// 	}
-// 	const response = await fetch(url);
-// 	const data = await response.json();
+  const fetchOptions: RequestInit = {
+    ...(options?.cache && { cache: options.cache }),
+    ...(options?.revalidate && { next: { revalidate: options.revalidate } }),
+    ...(options?.tags && { next: { tags: options.tags } }),
+    ...(options?.headers && { headers: options.headers }),
+  };
 
-// 	return data as T;
-// }
+  const response = await fetch(url, fetchOptions);
+
+  if (!response.ok) {
+    throw new Error(`Ошибка запроса: ${response.status} ${response.statusText}`);
+  }
+
+  const data = await response.json();
+  return data as T;
+};
