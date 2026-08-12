@@ -1,6 +1,5 @@
 'use client'
 
-import { type ReactNode } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Grid, Pagination } from 'swiper/modules';
 import { useSlider } from '@/hooks/useSlider';

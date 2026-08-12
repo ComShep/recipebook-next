@@ -3,6 +3,7 @@ import { RecipeCard } from "@/components/ui/recipeCard/RecipeCard";
 import AboutUs from "@/components/widgets/aboutus/AboutUs";
 import Banner from "@/components/widgets/banner/Banner";
 import { Explore } from "@/components/widgets/explore/Explore";
+import { Recipes } from "@/components/widgets/recipes/Recipes";
 import { Slider } from "@/components/widgets/slider/Slider";
 import { Subscribe } from "@/components/widgets/subscribe/Subscribe";
 import { MainResponse } from "@/types/types";
@@ -24,6 +25,7 @@ export default async function Home() {
         sliderTitle="featured recipes"
         CardComponent={RecipeCard}
       />
+      <Recipes recipes={recipeData}/>
       <AboutUs />
       <Subscribe />
     </>
