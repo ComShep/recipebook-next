@@ -1,7 +1,6 @@
 // import { WelcomeCoockingTips } from "../../components/CookingTipsPage/WelcomeCookingTips/WelcomeCoockingTips"
 import { Subscribe } from "@/components/widgets/subscribe/Subscribe";
 import { getFetchData } from "@/api/api";
-// import { useCookingTips } from "../../hooks/useCookingTips"
 import { Slider } from "@/components/widgets/slider/Slider";
 import { CookingTipsResponse } from "@/types/types";
 import { transformResponse } from "@/utils/transformResponce";
@@ -15,6 +14,7 @@ export default async function CookingTipsPage() {
     },
   );
   const masteringData = transformResponse(cockingTipsData.mastering);
+  const tipsAndTricksData = transformResponse(cockingTipsData.tips_and_tricks);
 
   return (
     <>
@@ -22,7 +22,7 @@ export default async function CookingTipsPage() {
       <Slider
         sliderTitle="Mastering the Basics"
         slidesInfo={masteringData}
-        CardComponent={CookingTipsCard}  // ← передаем компонент, а не функцию
+        CardComponent={CookingTipsCard} 
         cardProps={{ subSection: "mastering" as const }}
         rows={2}
         perView={3}
@@ -36,17 +36,16 @@ export default async function CookingTipsPage() {
 				}}
 				perView={3}
 				backColor={true}
-			/>
+			/> */}
 			<Slider
 				sliderTitle="TIps & tricks"
-				slidesInfo={cookingTips.tips_and_tricks}
-				renderCard={(recipe) => {
-					return <CookingTipsCard cardInfo={recipe} subSection='tips_and_tricks'/>
-				}}
+				slidesInfo={tipsAndTricksData}
+        CardComponent={CookingTipsCard} 
+        cardProps={{ subSection: "tips_and_tricks" as const }}
 				rows={2}
 				perView={3}
 				border={false}
-			/> */}
+			/>
       <Subscribe />
     </>
   );
