@@ -72,41 +72,17 @@ export const Header = () => {
               <Link
                 key={link.name}
                 href={link.href}
-                className={clsx({ [styles.active]: pathname === link.href })}
+                className={clsx({ 
+                  [styles.active]: 
+                    pathname === link.href || 
+                    (link.href !== '/' && pathname.startsWith(link.href + '/'))
+                })}
                 onClick={handleClickClose}
               >
                 {link.name}
               </Link>
             );
           })}
-          {/* <Link
-            href="/"
-            className={clsx({ [styles.active]: pathname === link.href })}
-            onClick={handleClickClose}
-          >
-            HOME
-          </Link> */}
-          {/* <Link
-            className={({ isActive }) => (isActive ? styles.active : "")}
-            onClick={handleClickClose}
-            href="/recipes"
-          >
-            RESIPES
-          </Link>
-          <Link
-            className={({ isActive }) => (isActive ? styles.active : "")}
-            onClick={handleClickClose}
-            href="/cooking-tips"
-          >
-            cooking tips
-          </Link>
-          <Link
-            className={({ isActive }) => (isActive ? styles.active : "")}
-            onClick={handleClickClose}
-            href="/about"
-          >
-            ABOUT US
-          </Link> */}
         </nav>
         <div>
           <ColorButton name="Subscribe" bcgColor="dark" />
