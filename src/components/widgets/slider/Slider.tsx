@@ -29,7 +29,7 @@ type Props<T extends { id: string | number }, P = object> = {
 export const Slider = <T extends { id: string | number }, P = object>({
   slidesInfo,
   sliderTitle,
-  CardComponent,  // ← компонент, а не функция
+  CardComponent, 
   cardProps = {} as P,
   rows = 1,
   perView = 2,
