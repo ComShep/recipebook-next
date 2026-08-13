@@ -5,6 +5,7 @@ import { Slider } from "@/components/widgets/slider/Slider";
 import { CookingTipsResponse } from "@/types/types";
 import { transformResponse } from "@/utils/transformResponce";
 import { CookingTipsCard } from "@/components/ui/cookingTipsCard/CookingTipsCard";
+import { CoolingTipsNourishingCard } from "@/components/ui/cookingTipsNourishingCard/CookingTipsNourishingCard";
 
 export default async function CookingTipsPage() {
   const cockingTipsData = await getFetchData<CookingTipsResponse>(
@@ -15,6 +16,7 @@ export default async function CookingTipsPage() {
   );
   const masteringData = transformResponse(cockingTipsData.mastering);
   const tipsAndTricksData = transformResponse(cockingTipsData.tips_and_tricks);
+  const nourishingData = transformResponse(cockingTipsData.nourishing);
 
   return (
     <>
@@ -28,15 +30,13 @@ export default async function CookingTipsPage() {
         perView={3}
         border={false}
       />
-      {/* <Slider
+      <Slider
 				sliderTitle="Nourishing Every Palate"
-				slidesInfo={cookingTips.nourishing}
-				renderCard={(recipe) => {
-					return <CoolingTipsNourishingCard cardInfo={recipe} subSection='nourishing'/>
-				}}
+				slidesInfo={nourishingData}
+        CardComponent={CoolingTipsNourishingCard}
 				perView={3}
 				backColor={true}
-			/> */}
+			/>
 			<Slider
 				sliderTitle="TIps & tricks"
 				slidesInfo={tipsAndTricksData}
