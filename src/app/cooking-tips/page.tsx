@@ -34,6 +34,7 @@ export default async function CookingTipsPage() {
 				sliderTitle="Nourishing Every Palate"
 				slidesInfo={nourishingData}
         CardComponent={CoolingTipsNourishingCard}
+        cardProps={{ subSection: "nourishing" as const }}
 				perView={3}
 				backColor={true}
 			/>

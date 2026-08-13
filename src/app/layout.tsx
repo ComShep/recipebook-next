@@ -3,6 +3,7 @@ import "@/assets/styles/index.css";
 import { Header } from "@/components/widgets/header/Header";
 import { Footer } from "@/components/widgets/footer/Footer";
 import { roboto, inter, montserrat } from '@/assets/fonts/fonts';
+import { Breadcrumbs } from "@/components/ui/breadcrumbs/BreadCrumbs";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,7 +16,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className={`${roboto.variable} ${inter.variable} ${montserrat.variable}`}>
         <div className="wrapper">
           <Header />
-          <main className="content">{children}</main>
+          <main className="content">
+            <Breadcrumbs />
+            {children}
+          </main>
           <Footer />
         </div>
       </body>
