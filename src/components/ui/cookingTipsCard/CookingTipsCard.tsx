@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from '@/components/ui/button/Button'
 import type { CookingTipsDetail, SubSectionType } from '@/types/types'
+import { useState } from 'react';
 
 type Props = {
 	data: CookingTipsDetail,
@@ -12,10 +13,18 @@ type Props = {
 }
 
 export const CookingTipsCard = ({data, subSection}: Props) => {
+  const [imgSrc, setImgSrc] = useState(data.image);
+
 	return (
 		<div className={styles.card}>
 			<div className={styles.image}>
-				<Image src={data.image} alt="picture" width={402} height={234}/>
+				<Image 
+          src={imgSrc} 
+          alt="picture" 
+          width={402} 
+          height={234}
+          onError={() => setImgSrc('/img/placeholder/A1w8fru2gKL.jpg')}
+        />
 			</div>
 			<div className={styles.info}>
 				<h3 className={styles.title}>{data.title}</h3>
