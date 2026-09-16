@@ -1,39 +1,52 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect, useCallback } from 'react';
 import type { Swiper as SwiperType } from 'swiper';
 
 export const useSlider = () => {
-	const swiperRef = useRef<SwiperType>(null);
-	const [isBegining, setIsBegining] = useState<boolean>(true);
-	const [isEnd, setIsEnd] = useState<boolean>(false)
+  const swiperRef = useRef<SwiperType | null>(null);
+  const isMountedRef = useRef(false);
+  const [isBegining, setIsBegining] = useState<boolean>(true);
+  const [isEnd, setIsEnd] = useState<boolean>(false);
 
-	const handleNext = () => {
-		swiperRef.current?.slideNext();
-	}
+  // ✅ Флаг монтирования
+  useEffect(() => {
+    isMountedRef.current = true;
+    return () => {
+      isMountedRef.current = false;
+    };
+  }, []);
 
-	const handlePrev = () => {
-		swiperRef.current?.slidePrev();
-	}
+  const handleNext = useCallback(() => {
+    swiperRef.current?.slideNext();
+  }, []);
 
-	const onSwiperInit = (swiper: SwiperType) => {
-		swiperRef.current = swiper;
-		setIsBegining(swiper.isBeginning);
-		setIsEnd(swiper.isEnd);
-	};
+  const handlePrev = useCallback(() => {
+    swiperRef.current?.slidePrev();
+  }, []);
 
-	const onSlideChange = (swiper: SwiperType) => {
-		setIsBegining(swiper.isBeginning);
-		setIsEnd(swiper.isEnd);
-	}
+  const onSwiperInit = useCallback((swiper: SwiperType) => {
+    swiperRef.current = swiper;
 
+    // ✅ Не обновляем состояние, если компонент ещё не смонтирован
+    if (!isMountedRef.current) return;
 
-	return {
-		isBegining,
-		isEnd,
+    setIsBegining(swiper.isBeginning);
+    setIsEnd(swiper.isEnd);
+  }, []);
 
-		handleNext,
-		handlePrev,
+  const onSlideChange = useCallback((swiper: SwiperType) => {
+    // ✅ То же самое для смены слайда
+    if (!isMountedRef.current) return;
 
-		onSwiperInit,
-		onSlideChange
-	}
-}
+    setIsBegining(swiper.isBeginning);
+    setIsEnd(swiper.isEnd);
+  }, []);
+
+  return {
+    isBegining,
+    isEnd,
+    handleNext,
+    handlePrev,
+    onSwiperInit,
+    onSlideChange,
+  };
+};

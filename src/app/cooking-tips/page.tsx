@@ -1,4 +1,3 @@
-// import { WelcomeCoockingTips } from "../../components/CookingTipsPage/WelcomeCookingTips/WelcomeCoockingTips"
 import { Subscribe } from "@/components/widgets/subscribe/Subscribe";
 import { getFetchData } from "@/api/api";
 import { Slider } from "@/components/widgets/slider/Slider";
@@ -6,6 +5,7 @@ import { CookingTipsResponse } from "@/types/types";
 import { transformResponse } from "@/utils/transformResponce";
 import { CookingTipsCard } from "@/components/ui/cookingTipsCard/CookingTipsCard";
 import { CoolingTipsNourishingCard } from "@/components/ui/cookingTipsNourishingCard/CookingTipsNourishingCard";
+import { WelcomeCoockingTips } from "@/components/widgets/welcomeCoockingTips/WelcomeCoockingTips";
 
 export default async function CookingTipsPage() {
   const cockingTipsData = await getFetchData<CookingTipsResponse>(
@@ -20,7 +20,7 @@ export default async function CookingTipsPage() {
 
   return (
     <>
-      {/* <WelcomeCoockingTips /> */}
+      <WelcomeCoockingTips />
       <Slider
         sliderTitle="Mastering the Basics"
         slidesInfo={masteringData}
