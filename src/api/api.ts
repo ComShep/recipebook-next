@@ -31,7 +31,7 @@ export const getFetchData = async <T>(
 export const getDetail = async <T>(
   slug: string,
   section: string,
-  subSection?: SubSectionType | null,
+  subSection?: string | null,
   options?: {
     cache?: RequestCache;          
     revalidate?: number;          
@@ -45,7 +45,7 @@ export const getDetail = async <T>(
   } else {
     url = `${baseUrl}${section}/${slug}.json`;
   }
-
+  console.log(url)
   const fetchOptions: RequestInit = {
     ...(options?.cache && { cache: options.cache }),
     ...(options?.revalidate && { next: { revalidate: options.revalidate } }),

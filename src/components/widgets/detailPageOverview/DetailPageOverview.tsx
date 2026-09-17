@@ -8,7 +8,7 @@ type BaseProps = {
 	tagTitle: string,
 	title: string,
 	description: string,
-	image: string,
+	image: string | null,
 	isRenderStats: boolean
 }
 
@@ -60,7 +60,7 @@ export const DetailPageOverwiew = (props: Props) => {
 			<h1 className={styles.overviewTitle}>{title}</h1>
 			<p className={styles.description}>{description}</p>
 			{isRenderStats && renderStats()}
-			<Image src={image} alt="img" width={1156} height={640}/>
+			{image && <Image src={image} alt="img" width={1156} height={640}/>}
 		</section>
 	)
 }
