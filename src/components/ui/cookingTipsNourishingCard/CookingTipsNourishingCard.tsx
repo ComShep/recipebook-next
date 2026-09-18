@@ -4,38 +4,15 @@ import styles from "./CookingTipsNourishingCard.module.css";
 import Link from "next/link";
 import { Button } from "@/components/ui/button/Button";
 import type { CookingTipsDetail, SubSectionType } from "@/types/types";
-import { useEffect, useState } from "react";
+import { useImagePlaceholder } from "@/hooks/useImagePlaceholder";
 
 type Props = {
   data: CookingTipsDetail;
   subSection?: SubSectionType | null;
 };
 
-const PLACEHOLDER = "/img/placeholder/imagePlaceholder.jpg";
-
 export const CoolingTipsNourishingCard = ({ data, subSection }: Props) => {
-  const [imageUrl, setImageUrl] = useState(PLACEHOLDER);
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    let ignore = false;
-    const img = new Image();
-
-    img.onload = () => {
-      if (!ignore) setImageUrl(data.image);
-    };
-    img.onerror = () => {
-      if (!ignore) setImageUrl(PLACEHOLDER);
-    };
-    img.src = data.image;
-
-    return () => {
-      ignore = true;
-      img.onload = null;
-      img.onerror = null;
-    };
-  }, [data.image]);
+  const { imageUrl } = useImagePlaceholder(data.image)
 
   return (
     <div

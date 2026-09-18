@@ -1,5 +1,3 @@
-import { SubSectionType } from "@/types/types";
-
 const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 
 export const getFetchData = async <T>(
@@ -45,7 +43,7 @@ export const getDetail = async <T>(
   } else {
     url = `${baseUrl}${section}/${slug}.json`;
   }
-  console.log(url)
+  
   const fetchOptions: RequestInit = {
     ...(options?.cache && { cache: options.cache }),
     ...(options?.revalidate && { next: { revalidate: options.revalidate } }),

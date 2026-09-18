@@ -6,18 +6,20 @@ import type { Recipe } from '@/types/types'
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from 'react';
+import { useImagePlaceholder } from '@/hooks/useImagePlaceholder';
 
 type Props = {
 	data: Recipe
 }
 
 export const RecipeCard = ({data}: Props) => {
-  const [imgSrc, setImgSrc] = useState(data.image);
+  const [, setImgSrc] = useState(data.image);
+  const { imageUrl } = useImagePlaceholder(data.image);
 
 	return (
 		<div className={styles.card}>
 			<div className={styles.image}>
-				<Image src={imgSrc} width={612} height={234} alt="picture" onError={() => setImgSrc('/img/placeholder/A1w8fru2gKL.jpg')}/>
+				<Image src={imageUrl} width={612} unoptimized height={234} alt="picture" onError={() => setImgSrc('/img/placeholder/A1w8fru2gKL.jpg')}/>
 			</div>
 			<div className={styles.info}>
 				<h3 className={styles.title}>{data.title}</h3>

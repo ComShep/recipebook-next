@@ -23,8 +23,7 @@ export default async function СookingTipsDetail({ params }: Props) {
     slug: slug,
     ...data,
   };
-
-  console.log(data)
+  
   return (
     <div className={styles.wrapper}>
       <DetailPageOverwiew
